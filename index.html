@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בחירת משחקים · חנוכה תשפ"ז · כולל זכרון דב</title>
+<meta property="og:title" content="בחירת משחקים לילדים · חנוכה תשפ״ז">
+<meta property="og:image" content="https://zd0542964361.github.io/chanuka-tashpaz/og.jpg">
+<meta property="og:description" content="כולל זכרון דב · בוחרים בקלות מהטלפון או מהמחשב">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8efd9;--bg2:#fdf8ec;--card:#fff;--gold:#a8761c;--gold2:#c99a3c;--ink:#3b2a12;--muted:#7a6545;--line:#ead9b4;--ok:#2f7d4f;--bad:#b3402f;--sel:#fff6dd}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--ink);font-family:Heebo,system-ui,sans-serif;font-size:16px;line-height:1.5;min-height:100vh}
+.wrap{max-width:980px;margin:0 auto;padding:16px 16px 150px;position:relative}
+header{text-align:center;padding:8px 0 4px}
+.bsd{position:absolute;top:10px;left:16px;font-size:13px;color:var(--muted)}
+header img{width:170px;max-width:50%;height:auto}
+h1{font-family:"Secular One",Heebo,sans-serif;font-weight:400;color:var(--gold);font-size:clamp(34px,8vw,54px);margin:6px 0 0;line-height:1.1}
+.sub{font-family:"Secular One",Heebo,sans-serif;color:var(--gold);font-size:20px;margin:0}
+.deadline{display:inline-block;margin:12px auto 0;background:var(--gold);color:#fff;border-radius:999px;padding:8px 20px;font-weight:700}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px;box-shadow:0 2px 10px rgba(120,80,20,.06)}
+.step{display:flex;align-items:center;gap:10px;margin:0 0 6px;font-weight:800;font-size:19px}
+.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-size:16px}
+.hint{color:var(--muted);font-size:15px;margin:4px 0 10px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opt{text-align:center;border:2px solid var(--line);background:#fffdf7;border-radius:14px;padding:10px 8px;transition:all .15s}
+.opt b{display:block;font-family:"Secular One",Heebo,sans-serif;font-weight:400;color:var(--gold);font-size:20px}
+.opt span{font-size:15px}
+.opt .st{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-top:2px;min-height:1.3em}
+.opt.match{border-color:var(--ok);background:#f2faf4;box-shadow:0 0 0 3px rgba(47,125,79,.2)}
+.opt.match .st{color:var(--ok)}
+.opt.maybe{border-color:var(--gold2);background:var(--sel)}
+.opt.out{opacity:.4}
+.group{margin-top:22px}
+.ghead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.gtitle{background:var(--gold);color:#fff;font-family:"Secular One",Heebo,sans-serif;padding:4px 18px;border-radius:8px;font-size:20px}
+.count{font-weight:700;font-size:15px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.game{position:relative;font:inherit;text-align:right;cursor:pointer;display:flex;gap:12px;align-items:center;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px;color:var(--ink);transition:border-color .15s,box-shadow .15s,opacity .15s}
+.game img{flex:none;width:96px;height:96px;object-fit:contain;border-radius:10px;background:#fff}
+.game .t{flex:1;min-width:0}
+.game .n{font-family:"Secular One",Heebo,sans-serif;color:var(--gold);font-size:22px;line-height:1}
+.game .nm{font-weight:800;font-size:17px;margin:2px 0}
+.game .d{font-size:14px;color:var(--muted);line-height:1.35}
+.game.on{border-color:var(--ok);box-shadow:0 0 0 3px rgba(47,125,79,.2);background:#f6fbf7}
+.check{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);background:#fff;display:grid;place-items:center;font-weight:800;color:#fff}
+.game.on .check{background:var(--ok);border-color:var(--ok)}
+.game.dim{opacity:.4}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-weight:500;margin:8px 0 4px}
+label i{color:var(--bad);font-style:normal}
+input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fffdf7;color:var(--ink)}
+input:focus{outline:none;border-color:var(--gold2);box-shadow:0 0 0 3px rgba(201,154,60,.2)}
+input.err{border-color:var(--bad);background:#fff6f4}
+.ferr{color:var(--bad);font-size:14px;min-height:1.2em;margin-top:2px}
+.bar{position:fixed;bottom:0;left:0;right:0;background:rgba(253,248,236,.97);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -4px 14px rgba(120,80,20,.08);z-index:5}
+.bar .in{max-width:980px;margin:0 auto;display:flex;gap:12px;align-items:center}
+.bar .sum{flex:1;min-width:0;font-size:15px}
+.send{font:inherit;font-weight:800;font-size:17px;border:0;border-radius:14px;padding:13px 22px;background:var(--gold);color:#fff;cursor:pointer;white-space:nowrap}
+.send.wait{background:#cdbb97}
+.msg{max-width:980px;margin:6px auto 0;color:var(--bad);font-weight:700;font-size:15px}
+.msg:empty{display:none}
+.note{text-align:center;color:var(--muted);font-size:13px;margin-top:22px}
+.done{text-align:center;padding:30px 10px}
+.done .big{font-size:56px}
+.done h2{font-family:"Secular One",Heebo,sans-serif;font-weight:400;color:var(--gold);font-size:32px;margin:8px 0}
+.done ul{list-style:none;padding:0;margin:14px auto;max-width:420px;text-align:right}
+.done li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:6px 0}
+.ghost{font:inherit;background:none;border:1.5px solid var(--gold);color:var(--gold);border-radius:12px;padding:10px 18px;cursor:pointer;font-weight:700;margin:4px}
+.demo{background:#fff1c9;border:1px dashed var(--gold2);border-radius:12px;padding:8px 12px;font-size:14px;text-align:center;margin-top:12px}
+/* מסך מנהל */
+.adm h2{font-family:"Secular One",Heebo,sans-serif;font-weight:400;color:var(--gold);font-size:28px;margin:0 0 6px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.kpi{background:var(--sel);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.kpi b{display:block;font-size:28px;color:var(--gold);font-family:"Secular One",Heebo,sans-serif;font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:right;vertical-align:top}
+th{background:var(--sel);font-weight:800}
+.tblw{overflow-x:auto}
+.q{font-weight:800;color:var(--gold);font-size:18px;text-align:center;width:70px}
+.ov{position:fixed;inset:0;background:rgba(59,42,18,.55);z-index:20;display:flex;align-items:center;justify-content:center;padding:16px}
+.sheet{background:var(--bg2);border-radius:20px;max-width:520px;width:100%;max-height:calc(100vh - 32px);overflow:auto;padding:20px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.sheet h2{font-family:"Secular One",Heebo,sans-serif;font-weight:400;color:var(--gold);font-size:28px;margin:0 0 4px}
+.who{color:var(--muted);margin:0 0 12px;font-size:15px}
+.chosen{display:grid;gap:8px;text-align:right}
+.optn{justify-self:center;background:var(--gold);color:#fff;border-radius:999px;padding:4px 16px;font-weight:700}
+.cg{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid var(--ok);border-radius:14px;padding:8px}
+.cg img{width:72px;height:72px;object-fit:contain;flex:none}
+.cg .n{font-family:"Secular One",Heebo,sans-serif;color:var(--gold);font-size:20px}
+.cg .nm{font-weight:800}
+.warn{background:#fff3e6;border:1px solid #f0c79a;border-radius:12px;padding:10px;margin:14px 0;font-size:16px}
+.lock{width:100%;background:var(--ok)}
+.back{width:100%;margin:8px 0 0}
+@media (max-width:560px){
+  .row2{grid-template-columns:1fr}
+  .opts{grid-template-columns:1fr}
+  .opt{display:flex;align-items:center;gap:10px;text-align:right;padding:8px 12px;flex-wrap:wrap}
+  .opt b{font-size:18px;min-width:72px}
+  .opt .st{width:100%;margin:0}
+  .grid{grid-template-columns:1fr}
+  .game img{width:84px;height:84px}
+  .bar .in{flex-direction:column;align-items:stretch;gap:8px}
+  .send{width:100%}
+  .kpis{grid-template-columns:1fr}
+  .people td:nth-child(3),.people th:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <span class="bsd">בס"ד</span>
+  <header>
+    <img src="img/logo.png" alt="כולל זכרון דב">
+    <h1>משחקים לילדים</h1>
+    <p class="sub">חנוכה תשפ"ז</p>
+    <div class="deadline">יש לבחור עד יום ראשון, י"ב כסלו</div>
+  </header>
+
+  <section class="box">
+    <div class="step"><span class="num">1</span>כל משפחה זכאית לאופציה אחת</div>
+    <p class="hint">עברו על כל המשחקים למטה ולחצו על מה שאתם רוצים. הדף יראה לכם לבד לאיזו אופציה הבחירה מתאימה.</p>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <section class="box">
+    <div class="step"><span class="num">2</span>כל המשחקים</div>
+    <div id="groups"></div>
+    <p class="note">התמונות להמחשה בלבד!</p>
+  </section>
+
+  <section class="box" id="details">
+    <div class="step"><span class="num">3</span>פרטי המשפחה</div>
+    <p class="hint">כל השדות חובה.</p>
+    <div class="row2">
+      <div><label for="first">שם פרטי <i>*</i></label><input id="first" autocomplete="given-name"><div class="ferr" id="e-first"></div></div>
+      <div><label for="last">שם משפחה <i>*</i></label><input id="last" autocomplete="family-name"><div class="ferr" id="e-last"></div></div>
+      <div><label for="phone">טלפון <i>*</i></label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-0000000" dir="ltr" style="text-align:right"><div class="ferr" id="e-phone"></div></div>
+      <div><label for="email">מייל <i>*</i></label><input id="email" type="email" inputmode="email" autocomplete="email" placeholder="name@gmail.com" dir="ltr" style="text-align:right"><div class="ferr" id="e-email"></div></div>
+    </div>
+  </section>
+</div>
+
+<div class="bar" id="bar">
+  <div class="in">
+    <div class="sum" id="sum">עוד לא נבחרו משחקים</div>
+    <button class="send wait" id="send">שליחת הבחירה</button>
+  </div>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+const GAMES = {
+  100:["מנטליזציה","משחק חברתי מסעיר ומטלטל, משעשע ומרגש! מתאים גם למבוגרים."],
+  101:["אידישע קאפ 5","חמישי בסדרת ספרי החידות המצוירות האהובה של הצייר גדי פולק."],
+  102:["משאית אוכל","משאית אוכל צבעונית, כולל קטנוע, דוכן משקאות ו־2 דמויות."],
+  103:["חלונות","משחק הלימוד היהודי: 384 שאלות ותשובות. מעשיר את הידע ומפתח זיכרון."],
+  104:["משפחת מגנטי בבית","27 חלקים מגנטיים צבעוניים לבניית סיפור הבית. משחק דמיון ויצירה."],
+  200:["מסביב לעולם","משחק עסקים בינלאומי מגיל 8. ישראל והעולם בלוח אחד."],
+  201:["סופר דרייבר","משחק חשיבה והיגיון דיגיטלי, 1500 שלבים."],
+  202:["שטיח ריקוד","שטיח ריקוד לשני שחקנים, כולל שירים יהודיים!"],
+  203:["מכשיר קשר","טווח עד 3 ק״מ, 16 ערוצים, כולל 2 מיקרופונים חיצוניים!"],
+  204:["כבאית סולם","סולם מסתובב ונשלף, 2 כבאים, רגלי ייצוב ופונקציות אור."],
+  205:["משאית מערבל בטון","ערכת בנייה עם דמויות עובדים, ציוד עבודה ואבנים."],
+  206:["משאית ניקיון ומיחזור","משאית זבל עם פח, דמויות עובדים וכלי ניקיון."],
+  207:["גרר עירוני","עם משטח הרמה, אורות מהבהבים ו־2 דמויות."],
+  208:["אמבולנס חיל הרפואה","דלתות נפתחות, צוות רפואי, אלונקה ואביזרים רפואיים."],
+  300:["עגלת דונה לבובה","עגלת בובות עם סל נשיאה ותיק תואם. חלום של כל ילדה!"],
+  301:["מטבחון","להיות כמו אמא, הכיף של כל ילד וילדה."],
+  302:["בובה מציאותית","בובה בגודל 22 אינץ׳, עם תלתלים, סרט לשיער ובגד תואם."],
+  303:["בובת תינוקת","בובה מציאותית במיוחד, עם סרט לשיער. נראית כמו תינוקת אמיתית!"]
+};
+const OPTIONS = {
+  "א":{need:{300:1}, text:"משחק 1 מקבוצה 300"},
+  "ב":{need:{200:1,100:1}, text:"1 מקבוצה 200 + 1 מקבוצה 100"},
+  "ג":{need:{100:3}, text:"3 משחקים מקבוצה 100"}
+};
+const imgSrc = n => (typeof IMG!=="undefined" ? IMG[n] : `img/${n}.jpg`);
+const groupOf = n => Math.floor(n/100)*100;
+const $ = id => document.getElementById(id);
+let sel = [];
+
+const counts = s => { const c={100:0,200:0,300:0}; s.forEach(n=>c[groupOf(n)]++); return c; };
+const fits = (s,k) => { const c=counts(s), need=OPTIONS[k].need; return [100,200,300].every(g => c[g] <= (need[g]||0)); };
+const exact = (s,k) => { const c=counts(s), need=OPTIONS[k].need; return [100,200,300].every(g => c[g] === (need[g]||0)); };
+const possible = s => Object.keys(OPTIONS).filter(k => fits(s,k));
+const matched = s => Object.keys(OPTIONS).find(k => exact(s,k));
+
+function missingText(s,k){
+  const c=counts(s), need=OPTIONS[k].need, parts=[];
+  for(const g in need){ const m=need[g]-c[g]; if(m>0) parts.push(m===1?`עוד 1 מקבוצה ${g}`:`עוד ${m} מקבוצה ${g}`); }
+  return parts.join(" + ");
+}
+function renderOpts(){
+  const pos = possible(sel), m = matched(sel);
+  $("opts").innerHTML = Object.entries(OPTIONS).map(([k,o]) => {
+    let cls="", st="";
+    if(sel.length){
+      if(m===k){ cls="match"; st="✓ הבחירה שלכם מתאימה"; }
+      else if(pos.includes(k)){ cls="maybe"; st="חסר: "+missingText(sel,k); }
+      else cls="out";
+    }
+    return `<div class="opt ${cls}"><b>אופציה ${k}׳</b><span>${o.text}</span><span class="st">${st}</span></div>`;
+  }).join("");
+}
+function renderGroups(){
+  $("groups").innerHTML = [300,200,100].map(g => {
+    const ids = Object.keys(GAMES).filter(n => groupOf(+n)===g);
+    return `<div class="group"><div class="ghead"><span class="gtitle">קבוצה ${g}</span><span class="count" id="c${g}"></span></div><div class="grid">` +
+      ids.map(n => `<button class="game" data-n="${n}"><span class="check">✓</span>
+        <img src="${imgSrc(n)}" alt="${GAMES[n][0]}" loading="lazy"><span class="t">
+        <span class="n">${n}</span><div class="nm">${GAMES[n][0]}</div><div class="d">${GAMES[n][1]}</div></span></button>`).join("")
+      + `</div></div>`;
+  }).join("");
+  $("groups").querySelectorAll(".game").forEach(b => b.onclick = () => toggle(+b.dataset.n));
+}
+function toggle(n){
+  $("msg").textContent="";
+  const i = sel.indexOf(n);
+  if(i>=0){ sel.splice(i,1); update(); return; }
+  const next = [...sel,n];
+  if(!possible(next).length){
+    const g=groupOf(n);
+    $("msg").textContent = g===300 ? "משחק מקבוצה 300 בא לבד (אופציה א׳). כדי לבחור אותו, בטלו קודם את שאר הבחירות."
+      : sel.some(x=>groupOf(x)===300) ? "כבר בחרתם משחק מקבוצה 300 (אופציה א׳). כדי לבחור משהו אחר, בטלו אותו קודם."
+      : g===200 ? "אפשר לבחור רק משחק אחד מקבוצה 200. כדי להחליף, בטלו קודם את הקודם."
+      : "הגעתם למקסימום מקבוצה 100. כדי להחליף, בטלו קודם משחק אחר.";
+    return;
+  }
+  sel = next; update();
+}
+function update(){
+  const pos = possible(sel);
+  document.querySelectorAll(".game").forEach(b => {
+    const n=+b.dataset.n, on=sel.includes(n);
+    b.classList.toggle("on",on);
+    b.classList.toggle("dim", !on && sel.length>0 && !possible([...sel,n]).length);
+  });
+  const c=counts(sel);
+  [100,200,300].forEach(g => $("c"+g).textContent = c[g] ? `נבחרו ${c[g]}` : "");
+  renderOpts();
+  const m = matched(sel);
+  $("sum").innerHTML = !sel.length ? "עוד לא נבחרו משחקים"
+    : (m ? `<b>✓ אופציה ${m}׳</b> · ` : `<b>חסר:</b> ${pos.map(k=>missingText(sel,k)).join(" או ")} · `) + sel.map(n=>`${n} ${GAMES[n][0]}`).join(" · ");
+  $("send").classList.toggle("wait", !m);
+}
+function checkFields(){
+  const v = id => $(id).value.trim(); let first=null;
+  const rules = {
+    first:[v("first").length>=2,"נא למלא שם פרטי"],
+    last:[v("last").length>=2,"נא למלא שם משפחה"],
+    phone:[/^0\d{8,9}$/.test(v("phone").replace(/[\s-]/g,"")),"נא למלא מספר טלפון תקין, לדוגמה 050-1234567"],
+    email:[/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v("email")),"נא למלא כתובת מייל תקינה"]
+  };
+  for(const id in rules){ const [ok,t]=rules[id]; $(id).classList.toggle("err",!ok); $("e-"+id).textContent= ok?"":t; if(!ok&&!first) first=id; }
+  return first;
+}
+["first","last","phone","email"].forEach(id => $(id).addEventListener("input",()=>{ if($(id).classList.contains("err")) checkFields(); }));
+
+/* שמירה בשרת */
+const API="https://dmhxovlepdoobkoiyjhj.supabase.co/rest/v1/rpc/", ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtaHhvdmxlcGRvb2Jrb2l5amhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzNDUxNDIsImV4cCI6MjEwNzkyMTE0Mn0.qao1CRL1QWJhMnWsAaPXKt-WxbgySqIlH68iIdCYH1o";
+async function rpc(fn, body){
+  const r = await fetch(API+fn,{method:"POST",headers:{apikey:ANON,Authorization:"Bearer "+ANON,"Content-Type":"application/json"},body:JSON.stringify(body)});
+  if(!r.ok) throw new Error("שגיאת שרת "+r.status);
+  return r.json();
+}
+
+$("send").onclick = () => {
+  const m = matched(sel);
+  if(!m){ $("msg").textContent = sel.length ? "הבחירה עוד לא שלמה. "+$("sum").innerText.split("·")[0] : "קודם בוחרים משחקים 🙂"; document.querySelector(".opts").scrollIntoView({behavior:"smooth",block:"center"}); return; }
+  const bad = checkFields();
+  if(bad){ $("msg").textContent="חסרים פרטים. כל השדות חובה."; $(bad).scrollIntoView({behavior:"smooth",block:"center"}); $(bad).focus({preventScroll:true}); return; }
+  const rec = {first:$("first").value.trim(), last:$("last").value.trim(), phone:$("phone").value.trim(), email:$("email").value.trim(), option:m, games:[...sel].sort(), at:new Date().toLocaleString("he-IL")};
+  confirmBox(rec);
+};
+function confirmBox(rec){
+  const d=document.createElement("div"); d.className="ov"; d.id="ov";
+  d.innerHTML = `<div class="sheet" role="dialog" aria-modal="true">
+    <h2>זו הבחירה שלכם</h2>
+    <p class="who">משפחת ${esc(rec.last)} · ${esc(rec.first)}<br><span dir="ltr">${esc(rec.phone)}</span> · ${esc(rec.email)}</p>
+    <div class="chosen"><div class="optn">אופציה ${rec.option}׳</div>
+      ${rec.games.map(n=>`<div class="cg"><img src="${imgSrc(n)}" alt=""><div><span class="n">${n}</span><div class="nm">${GAMES[n][0]}</div></div></div>`).join("")}</div>
+    <div class="warn">⚠️ האם אתם בטוחים? אחרי הנעילה <b>אי אפשר לשנות</b> את הבחירה.</div>
+    <button class="send lock" id="lock">🔒 כן, לנעול ולשלוח</button>
+    <div class="ferr" id="lockerr" style="margin-top:8px"></div>
+    <button class="ghost back" id="back">רגע, אני רוצה לשנות</button></div>`;
+  document.body.appendChild(d); document.body.style.overflow="hidden";
+  $("back").onclick = () => { d.remove(); document.body.style.overflow=""; };
+  $("lock").onclick = async () => {
+    const btn=$("lock"); btn.disabled=true; btn.textContent="שולח...";
+    try{
+      const res = await rpc("submit_mischakim",{p_first:rec.first,p_last:rec.last,p_phone:rec.phone,p_email:rec.email,p_games:rec.games,p_device:navigator.userAgent});
+      if(res!=="ok"){ btn.disabled=false; btn.textContent="🔒 כן, לנעול ולשלוח"; $("lockerr").textContent = res==="כבר נשלחה בחירה מהטלפון הזה" ? "כבר נשלחה בחירה מהטלפון הזה. אם צריך לשנות, פנו למשרד הכולל." : "לא נשמר: "+res; return; }
+      d.remove(); document.body.style.overflow=""; thanks(rec);
+    }catch(e){ btn.disabled=false; btn.textContent="🔒 כן, לנעול ולשלוח"; $("lockerr").textContent="אין חיבור לאינטרנט, או תקלה בשרת. נסו שוב בעוד רגע."; }
+  };
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function thanks(r){
+  $("bar").style.display="none";
+  $("app").innerHTML = `<div class="box done"><div class="big">🎁</div><h2>תודה, משפחת ${esc(r.last)}!</h2>
+    <p>הבחירה שלכם נקלטה ונעולה. מומלץ לצלם את המסך הזה.</p>
+    <ul><li><b>אופציה ${r.option}׳</b></li>${r.games.map(n=>`<li><b>${n}</b> · ${GAMES[n][0]}</li>`).join("")}</ul>
+    <p class="hint">נשתדל למלא את מבוקשכם. חנוכה שמח!</p></div>`;
+  scrollTo(0,0);
+}
+function adminLogin(){
+  $("bar").style.display="none";
+  $("app").innerHTML = `<div class="box adm" style="max-width:420px;margin:40px auto;text-align:center"><h2>🔐 דף התוצאות</h2>
+    <p class="hint">הקלידו את הקוד הסודי</p><input id="code" inputmode="numeric" autocomplete="off" style="text-align:center;font-size:22px;letter-spacing:6px">
+    <div class="ferr" id="cerr"></div><button class="send" id="go" style="width:100%;margin-top:10px">כניסה</button></div>`;
+  const go = async () => { $("cerr").textContent=""; try{ const rows = await rpc("mischakim_results",{p_code:$("code").value.trim()});
+      if(!rows.length){ $("cerr").textContent="קוד שגוי, או שעוד אין בחירות."; return; }
+      admin(rows.map(r=>({first:r.first_name,last:r.last_name,phone:r.phone,email:r.email,option:r.option,games:r.games,at:new Date(r.created_at).toLocaleString("he-IL")})));
+    }catch(e){ $("cerr").textContent="אין חיבור לשרת. נסו שוב."; } };
+  $("go").onclick=go; $("code").addEventListener("keydown",e=>{ if(e.key==="Enter") go(); });
+}
+function admin(all){
+  const tally = {}; all.forEach(r => r.games.forEach(n => tally[n]=(tally[n]||0)+1));
+  const order = Object.keys(GAMES).filter(n=>tally[n]).sort((a,b)=>a-b);
+  const totalItems = Object.values(tally).reduce((a,b)=>a+b,0);
+  $("bar").style.display="none";
+  $("app").innerHTML = `<div class="box adm">
+    <h2 style="margin-top:12px">📦 מה להזמין</h2>
+    <div class="kpis"><div class="kpi"><b>${all.length}</b>משפחות בחרו</div><div class="kpi"><b>${totalItems}</b>משחקים בסך הכל</div><div class="kpi"><b>${order.length}</b>סוגי משחקים</div></div>
+    <div class="tblw"><table><tr><th>מס׳</th><th>משחק</th><th>קבוצה</th><th class="q">כמות</th></tr>
+      ${order.map(n=>`<tr><td><b>${n}</b></td><td>${GAMES[n][0]}</td><td>${groupOf(+n)}</td><td class="q">${tally[n]}</td></tr>`).join("")}</table></div>
+    <h2 style="margin-top:22px">👨‍👩‍👧 לפי משפחה</h2>
+    <div class="tblw"><table class="people"><tr><th>משפחה</th><th>טלפון</th><th>מייל</th><th>אופציה</th><th>משחקים</th></tr>
+      ${all.map(r=>`<tr><td>${esc(r.last)} ${esc(r.first)}</td><td dir="ltr" style="text-align:right;white-space:nowrap">${esc(r.phone)}</td><td>${esc(r.email)}</td><td>${r.option}׳</td><td>${r.games.map(n=>`${n} ${GAMES[n][0]}`).join("<br>")}</td></tr>`).join("")}</table></div>
+    <p style="text-align:center;margin-top:16px"><button class="ghost" onclick="exportXls()">⬇️ הורדה לאקסל</button>
+    <button class="ghost" onclick="adminLogin()">🔄 רענון</button></p></div>`;
+  window._all = all; scrollTo(0,0);
+}
+function exportXls(){
+  const rows=[["שם משפחה","שם פרטי","טלפון","מייל","אופציה","משחקים","מתי"]].concat(
+    window._all.map(r=>[r.last,r.first,r.phone,r.email,r.option,r.games.map(n=>`${n} ${GAMES[n][0]}`).join(", "),r.at]));
+  const csv="﻿"+rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download="בחירת-משחקים.csv"; a.click();
+}
+if(location.hash==="#nihul") adminLogin(); else { renderGroups(); update(); }
+</script>
+</body>
+</html>
